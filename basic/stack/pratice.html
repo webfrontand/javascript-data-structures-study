@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<script>
+	function Stack(){
+        this.items = [];
+    }
+    Stack.prototype.push = function(element){
+        this.items.push(element);
+    }
+    Stack.prototype.pop = function(){
+        return this.items.pop();
+    }
+    Stack.prototype.peek = function(){
+        return this.items[this.items.length-1];
+    }
+    Stack.prototype.isEmpty = function(){
+        return this.items.length == 0;
+    }
+    Stack.prototype.clear = function(){
+        this.items = [];
+    }
+    Stack.prototype.size = function(){
+        return this.items.length;
+    }
+    Stack.prototype.print = function(){
+        console.log(this.items.toString());
+    }
+    
+    
+    
+    
+    
+    
+    /*
+    function binary(number){ // 50
+        var stack = new Stack();
+        var rem;
+        var str = '';
+        
+        while(number > 0){
+            rem = Math.floor(number % 2);
+            stack.push(rem);
+            number = Math.floor(number / 2);
+        }
+        
+        while(!stack.isEmpty()){ // 이부분이 약간 헷갈렸음
+            str += stack.pop().toString();
+        }
+        return str;
+    }
+    
+    console.log(binary(50));
+    */
+    function binary(number){
+        var stack = new Stack();
+        var rem;
+        var str = '';
+        
+        while(number > 0){
+            rem = Math.floor(number % 2);
+            stack.push(rem);
+            number = Math.floor(number / 2);
+        }
+        
+        while(!stack.isEmpty()){
+            str += stack.pop().toString();
+        }
+        
+        return str;
+    }
+    
+    console.log(binary(50));
+</script>
+</body>
+</html>

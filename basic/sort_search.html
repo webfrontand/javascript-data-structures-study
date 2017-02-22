@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<script>
+    // 역 정렬 reverse();
+    // 순 정렬 sort();
+    // default 값은 사전적 정렬을 한다. 그러므로 숫자 비교는 별도의 비교 함수를 만들어야한다.
+    
+    var numbers = [7,2,6,4,5,3,1];
+    numbers.sort((x,y) => {
+        return x-y;
+    })
+    console.log(numbers);
+    
+    let compare = (x,y) => {
+        if(x < y){
+            return -1;
+        }
+        if(x > y){
+            return 1;
+        }
+        return 0;
+    }
+    
+    numbers.sort(compare);
+    
+    // 사용자 정의 정렬
+    
+    let student = [
+       { name: "ryu", age: 24 },
+       { name: "suzy", age: 29 },
+       { name: "back", age: 25 }
+    ];
+    
+    let compareAge = (x,y) => {
+        if(x.age < y.age){
+            return -1;
+        }
+        if(x.age > y.age){
+            return 1;
+        }
+        return 0;
+    }
+    
+    
+    // 검색
+    
+    /*
+        indexOf(), lastIndexOf()
+    */
+    
+    // 배열 문자열 반환
+    // toString(), join() // 둘다 문자열을 반환하는데  차이가 있다.
+    
+    var arr = [1,2,3,4,5,6];
+    
+    console.log(arr.toString()); // default ',' 구분자
+    console.log(arr.join("-")); // 구분자 지정
+</script>
+</body>
+</html>

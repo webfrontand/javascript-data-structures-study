@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<script>
+/*
+    스택은 LIFO 원리에 따라 정렬된 컬렉션이다. 스택은 항상 동일한 종단점에서 추가/삭제된다.
+    그 종단점은 TOP과 BOTTOM이다.
+*/
+    
+    function Stack(){
+        this.items = []; // empty array
+
+    }
+    Stack.prototype.push = function(element){
+        this.items.push(element);
+    }
+    Stack.prototype.pop = function(){
+        return this.items.pop();
+    }
+    Stack.prototype.peek = function(){
+        return this.items[this.items.length-1];
+    }
+    Stack.prototype.isEmpty = function(){
+        return this.items.length == 0;
+    }
+    Stack.prototype.clear = function(){
+        this.items = [];
+    }
+
+    Stack.prototype.size = function(){
+        return this.items.length;
+    }
+    
+    Stack.prototype.print = function(){
+        console.log(this.items.toString());
+    }
+
+    let stack = new Stack();
+    stack.push('ryu');
+    stack.push('suzy');
+    stack.print();
+//    stack.pop();
+//    console.log(stack.items);
+    console.log(stack.peek());
+    console.log(stack.isEmpty());
+    stack.clear();
+    console.log(stack.isEmpty());
+    console.log(stack.size());
+</script>
+</body>
+</html>
