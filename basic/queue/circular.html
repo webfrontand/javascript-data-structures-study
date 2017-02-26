@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script>
+		// 환형 큐 (뜨거운 감자 게임);
+
+		// function hotPotato(nameList, num){
+		// 	var queue = new Queue();
+
+		// 	for(var i = 0; i < nameList.length; i++){
+		// 		queue.enqueue(nameList[i]);
+		// 	}
+
+		// 	var eliminated = '';
+		// 	while(queue.size() > 1){
+		// 		for(var i = 0; i < num; i++){
+		// 			queue.enqueue(queue.dequeue());
+		// 		}
+		// 		eliminated = queue.dequeue();
+		// 		console.log(eliminated+"(을)를 뜨거운 감자 게임에서 퇴장시킵니다");
+		// 	}
+		// 	return queue.dequeue();
+		// }
+
+		/*
+			1. 게임 참가자 전원의 이름을 배열로 읽어들여 큐에 추가한다.
+			2. 일정 횟수만큼 큐를 순회한다.
+			3. 큐를 꺼내어 다시 맨끝으로 다시 넣는다.
+				queue.enqueue(queue.dequeue());
+			4. 마침내 지정한 횟수만큼 반복되었을때 감자를 들고 있는 사람을 퇴장 그리고 마지막에 남은 사람이 승자.
+		*/
+	</script>
+</head>
+<body>
+
+</body>
+</html>

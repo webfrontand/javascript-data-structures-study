@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script>
+		/*
+			연결리스트
+				참조 정보가 포함된 노드로 구성된다.
+				배열의 경우, 배열 중간에 원소 삽입시 전체 배열을 움직여야하지만, 연결리스트는 포인터만 이동하면 된다.
+				그런 점에서는 연결리스트가 좋지만, 검색시에는 배열은 인덱스를 이용하여 바로 접근이 가능하지만, 연결리스트는 반드시 head부터 순차 접근을 해야한다. 
+
+
+			1. 각 노드 구성하기 (element, next)
+				설정하는 값에 따라 element값이 2~3개가 될수도 있다.
+			2. 필요한 메소드 설정 
+
+		*/
+
+
+		// function LinkedList(){
+		// 	var Node = function(element){
+		// 		this.element = element;
+		// 		this.next = null;
+		// 	}
+		// 	var length = 0;
+		// 	var head = null;
+		// 	this.append = function(element){
+		// 		var node = new Node(element), current;
+
+		// 		if(head === null){
+		// 			head = node;
+		// 		} else {
+		// 			current = head;
+		// 			while(current.next){
+		// 				current = current.next;
+		// 			}
+		// 			current.next = node;
+		// 		}
+		// 		length++;
+		// 	}
+		// 	this.removeAt = function(position){
+		// 		if(position > -1 && position < length){
+		// 			var current = head,
+		// 			previous,
+		// 			index = 0;
+
+		// 			if(index === 0){
+		// 				head = current.next;
+		// 			} else {
+
+		// 				while(index++ < position){
+		// 					previous = current;
+		// 					current = current.next;
+		// 				}
+
+		// 				previous.next = current.next;
+		// 			}
+
+		// 			length--;
+		// 			return current.element;
+		// 		} else {
+		// 			return null;
+		// 		}
+		// 	}
+
+		// 	this.insert = function(position, element){
+		// 		if(position > 0 && position <= length){
+		// 			var node = new Node(element),
+		// 			current = head,
+		// 			previous,
+		// 			index = 0;
+
+		// 			if(index === 0){
+		// 				node.next = current;
+		// 				head = node;
+		// 			} else {
+		// 				while(index++ < position){
+		// 					previous = current;
+		// 					current = current.next;
+		// 				}
+		// 				previous.next = node;
+		// 				node.next = current;
+		// 			}
+
+		// 			length++;
+
+		// 			return true;
+		// 		} else {
+		// 			return false;
+		// 		}
+		// 	}
+
+		// 	this.toString = function(){
+		// 		var str = '',
+		// 		current = head;
+
+		// 		while(current){
+		// 			str += current.element;
+		// 			current = current.next
+		// 		}
+		// 		return str;
+		// 	}
+
+		// 	this.indexOf = function(element){
+		// 		var current = head,
+		// 		index = -1;
+
+		// 		while(current){
+		// 			if(current.element === element){
+		// 				return index;
+		// 			}
+		// 			index++;
+		// 			current = current.next;
+		// 		}
+		// 		return -1;
+		// 	}
+
+		// 	this.remove = function(element){
+		// 		var index = this.indexOf(element);
+
+		// 		return this.removeAt(index);
+		// 	}
+		// }
+
+		function LinkedList(){
+			var Node = function(element){
+				this.element = element;
+				this.next = null;
+			}
+
+			var head = null;
+			var length = 0;
+
+			this.append = function(element){
+				var node = new Node(element),
+				current;
+
+				if(node === null){
+					head = node;
+				} else {
+					current = head;
+
+					while(current.next){
+						current = current.next;
+					}
+
+					current.next = node;
+				}
+				length++;
+			}
+			this.removeAt = function(position){
+				if(position > -1 && position < length){
+					var current = head,
+					previous,
+					index = 0;
+
+					if(position === 0){
+						head = current.next;
+					} else {
+
+						while(index++ < position){
+							previous = current;
+							current	= current.next;
+						}
+						previous.next = current.next;
+					}
+					length--;
+					return current.element;
+				} else {
+					return null;
+				}
+			}
+
+			this.insert = function(position, element){
+				if(position >= 0 && position <= length){
+					var node = new Node(element),
+					current = head,
+					previous,
+					index = 0;
+
+					if(position === 0){
+						node.next = current;
+						head = node;
+					} else {
+						while(index++ < position){
+							previous = current;
+							current = current.next;
+						}
+
+						node.next = current;
+						previous.next = node;
+					}
+					length++;
+					return true;
+				} else {
+					return false;
+				}
+			}
+			this.toString = function(){
+				var current = head,
+				str = '';
+				while(current){
+					str += current.element;
+					current = current.next;
+				}
+				return str;
+			}
+
+			this.indexOf = function(element){
+				var current = head,
+				index = -1;
+
+				while(current){
+					if(element === current.element){
+						return index;
+					}
+					index++;
+					current = current.next;
+				}
+
+				return -1;
+			}
+
+			this.remove = function(element){
+				var index = this.indexOf(element);
+
+				return this.removeAt(index);
+			}
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
