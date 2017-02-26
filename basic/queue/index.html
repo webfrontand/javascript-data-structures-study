@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script>
+		/*
+			큐는 FIFO 원리에 따라 정렬된 컬렉션이다.
+			새 원소는 뒤로 들어가서 앞으로 빠져나가는 구조이다.
+			대표적인 예시는 줄서기가 있겠다. 번호표?
+			컴퓨터 구조에서는 출력문 인쇄 대기가 있다. 
+			차례대로 해야할 일을 주로하는데. 우선 순위 큐도 존재한다. 
+
+		*/
+		function Queue(){
+			this.items = []; // array
+		}
+		Queue.prototype.enqueue = function(element){
+			this.items.push(element);
+		}
+		Queue.prototype.dequeue = function(){
+			return this.items.shift(); // 앞부분에 있는 배열 삭제
+		}
+		Queue.prototype.front = function(){
+			return this.items[0]; // 제일 앞부분 배열 반호나
+		}
+		Queue.prototype.isEmpty = function(){
+			return this.items.length == 0;
+		}
+		Queue.prototype.size = function(){
+			return this.items.length;
+		}
+		Queue.prototype.print = function(){
+			console.log(this.items.toString());
+		}
+
+		/*
+			스택은 큐와 매우 유사하다.
+		*/
+
+		//우선 순위 큐
+		/*
+			큐는 일상생활에서도 널리 활용되는 개념이다.
+
+		*/
+
+		// function PriorityQueue(){
+		// 	var items = [];
+
+		// 	function QueueElement(element, priority){
+		// 		this.element = element;
+		// 		this.priority = priority;
+		// 	}
+
+		// 	this.enqueue = function(element, priority){
+		// 		var queueElement = new QueueElement(element, priority);
+
+		// 		if(this.isEmpty()){
+		// 			items.push(queueElement);
+		// 		} else {
+		// 			for(var i = 0; i<items.length; i++){
+		// 				if(items[i].priority > queueElement.priority){
+		// 					items.splice(i, 0, queueElement);
+		// 					break;
+		// 				} else {
+		// 					items.push(queueElement);
+		// 					break;
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+
+		// 	this.dequeue = function(){
+		// 		return items.shift();
+		// 	}
+
+		// 	this.front = function(){
+		// 		return items[0]; // 제일 앞부분 배열 반호나
+		// 	}
+		// 	this.isEmpty = function(){
+		// 		return items.length == 0;
+		// 	}
+		// 	this.size = function(){
+		// 		return items.length;
+		// 	}
+		// 	this.print = function(){
+		// 		console.log(items);
+		// 	}
+		// }
+
+		// var priorityQueue = new PriorityQueue();
+		// priorityQueue.enqueue("ryu", 2);
+		// priorityQueue.enqueue("suzy", 3);
+		// priorityQueue.enqueue("back", 4);
+		// priorityQueue.enqueue("choi", 1);
+		// priorityQueue.enqueue("choi", 0);
+		// priorityQueue.print();
+
+		function PriorityQueue(){
+			var items = [];
+
+			function QueueElement(element, priority){
+				this.element = element;
+				this.priority = priority;
+			}
+
+			this.enqueue = function(element, priority){
+				var queueElement = new QueueElement(element, priority);
+
+				if(items.length == 0){
+					items.push(element);
+				} else {
+					var added = false;
+					for(var i = 0; i<items.length; i++){
+						if(queueElement.priority < items[i].priority){
+							items.splice(i, 0, queueElement);
+							added = true;
+							break;
+						}
+					}
+
+					if(!added){
+						items.push(queueElement); // 이건 왜 있는거지;;?
+					}
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
