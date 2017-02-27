@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script>
+		/*
+			집합
+			ES6에는 SET 클래스의 구현 명세까지 포함되어있다.
+			https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+			이제부터 살펴볼 set 클래스는 es6 명세에 근거함을 밝혀둔다.
+			add
+			remove
+			has
+			clear
+		// 	size
+		// 	values
+		// */
+
+		// function Set(){
+		// 	var items = {};
+
+		// 	this.has = function(value){
+		// 		return value in items; // 객체에서 value key를 찾는다
+		// 	}
+
+		// 	/*
+		// 	this.has = function(value){
+		// 		return items.hasOwnProperty(value);
+		// 	}
+
+		// 	*/
+
+		// 	this.add = function(value){
+		// 		if(!this.has(value)){
+		// 			items[value] = value;
+		// 			return true;
+		// 		}
+		// 		return false;
+		// 	}
+
+		// 	this.remove = function(value){
+		// 		if(this.has(value)){
+		// 			delete items[value];
+		// 			return true;
+		// 		}
+		// 		return false;
+		// 	}
+
+		// 	this.clear = function(){
+		// 		items = {};
+		// 	}
+
+		// 	/*
+		// 		size
+		// 	this.size = function(){
+		// 		return Object.keys(items).length;
+		// 	}
+		// 	*/
+
+		// 	this.size = function(){
+		// 		var count = 0;
+
+		// 		for(var prop in items){
+		// 			if(this.has(prop)){
+		// 				count++;
+		// 			}
+		// 		}
+		// 		return count;
+		// 	}
+		// 	this.values = function(){
+		// 		return Object.keys(items);
+		// 	}
+		// }
+
+
+		function ArraySet(){
+			var items = [];
+
+			this.has = function(value){
+				for(var i=0;i<items.length;i++){
+					if(items[i] === value){
+						return true;
+					}
+				}
+				return false;
+			}
+			this.index = function(value){
+				for(var i=0;i<items.length;i++){
+					if(items[i] === value){
+						return i;
+					}
+				}
+				return -1;
+			}
+
+			this.add = function(value){
+				if(this.has(value)){
+					console.log('이미 존재합니다.', value);
+				} else {
+					items.push(value);
+				}
+			}
+			this.remove = function(value){
+				var index = this.index(value);
+
+				if(index == -1){
+					console.log('존재하지 않습니다')
+				} else {
+					items.splice(index, 1);
+				}
+			}
+			this.clear = function(){
+				items = [];
+			}
+
+			this.size = function(){
+				return items.length;
+			}
+			this.toString = function(){
+				return items.toString();
+			}
+		}
+
+		var set = new ArraySet();
+		set.add("ryu");
+		console.log(set.toString());
+		set.add('suzy');
+		console.log(set.toString());
+		set.remove("ry1");
+		console.log(set.toString());
+	</script>
+</head>
+<body>
+
+</body>
+</html>

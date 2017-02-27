@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>	
+	<meta charset="utf-8">
+	<title></title>
+	<script>
+		/*
+			집합
+			ES6에는 SET 클래스의 구현 명세까지 포함되어있다.
+			https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+			이제부터 살펴볼 set 클래스는 es6 명세에 근거함을 밝혀둔다.
+			add
+			remove
+			has
+			clear
+			size
+			values
+		*/
+		/*
+			합집합 모든 원소
+			교집합 공통 원소
+			차집합 첫번째는 있지만, 두번째 없음
+			부분 집합 어떤 집합이 다른 집합의 일부분 인가?
+
+
+		*/
+		function Set(){
+			var items = {};
+
+			this.has = function(value){
+				return value in items; // 객체에서 value key를 찾는다
+			}
+
+			/*
+			this.has = function(value){
+				return items.hasOwnProperty(value);
+			}
+
+			*/
+
+			this.add = function(value){
+				if(!this.has(value)){
+					items[value] = value;
+					return true;
+				}
+				return false;
+			}
+
+			this.remove = function(value){
+				if(this.has(value)){
+					delete items[value];
+					return true;
+				}
+				return false;
+			}
+
+			this.clear = function(){
+				items = {};
+			}
+
+			/*
+				size
+			this.size = function(){
+				return Object.keys(items).length;
+			}
+			*/
+
+			this.size = function(){
+				var count = 0;
+
+				for(var prop in items){
+					if(this.has(prop)){
+						count++;
+					}
+				}
+				return count;
+			}
+			this.values = function(){
+				return Object.keys(items);
+			}
+
+			this.union = function(otherSet){
+				var unionSet = new Set();
+
+				var values = this.values();
+
+				for(var i=0;values.length;i++){
+					unionSet.add(values[i]);
+				}
+
+				values = otherSet.values();
+
+				for(var i=0;values.length;i++){
+					unionSet.add(values[i]);
+				}
+				return unionSet;
+			}
+
+			// 교집합 하기
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
