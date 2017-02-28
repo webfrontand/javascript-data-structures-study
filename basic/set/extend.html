@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script>
+		function Set(){
+			var items = {};
+
+			this.has = function(value){
+				return value in items;
+			}
+
+			this.add = function(value){
+				if(!this.has(value)){
+					items[value] = value;
+					return true;
+				}
+				return false
+			}
+
+			this.remove = function(value){
+				if(this.has(value)){
+					delete items[value];
+					return true;
+				}
+				return false;
+			}
+
+			this.clear = function(){
+				items = {};
+			}
+
+			this.size = function(){
+				return Object.keys(items).length;
+			}
+
+			this.values = function(){
+				return Object.keys(items);
+			}
+
+			this.union = function(otherSet){
+				var set = new Set();
+				var values = this.values();
+
+				for(var i=0;i<values.length;i++){
+					set.add(values[i]);
+				}
+
+				values = otherSet.values();
+
+				for(var i=0;i<values.length;i++){
+					set.add(values[i]);
+				}
+				return set;
+			}
+			// 교집합
+
+			/*
+				A = 1,2,3
+				B = 3,4,5
+
+			*/
+			this.intersection = function(otherSet){
+				var set = new Set();
+				var values = this.values(); // 1,2,3
+
+				for(var i=0;i<values.length;i++){
+					if(otherSet.has(values[i])){
+						set.add(values[i]);
+					}
+				}
+				return set;
+			}
+
+			this.difference = function(otherSet){
+				var set = new Set();
+				var values = this.values(); // 1,2,3
+				for(var i=0;i<values.length;i++){
+					if(!otherSet.has(values[i])){
+						set.add(values[i])
+					}
+				}
+				return set;
+			}
+
+			this.subset = function(otherSet){
+				if(this.size() > otherSet.size()){
+					return false;
+				} else {
+					var values = this.values();
+
+					for(var i=0;i<values.length;i++){
+						if(!otherSet.has(values[i])){
+							return false;
+						}
+					}
+					return true;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
