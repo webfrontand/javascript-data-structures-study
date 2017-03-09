@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+	<script>
+		/*
+			[선형 탐색법]
+		*/
+
+		this.put = function(key, value){
+			var position = loseloseHashTable(key);
+
+			if(table[position] == undefined){
+				table[position] = new ValuePair(key, value);
+			} else {
+				var index = ++position;
+				while(table[index] != undefined){
+					index++;
+				}
+				table[index] = new ValuePair(key, value);
+			}
+		}
+
+		/*
+			position 변수에 해쉬값을 리턴 받는다.
+			해당 해쉬값에 요소가 들어있는가? 없는가? 를 확인한다.
+			없으면 그 위치에 요소를 집어넣는다.
+			있다면 index 변수를 position 하나 더한 값을 넣고 while문으로 그 값에 요소가 있는지 검사하고
+			요소가 있으면 index를 계속 1씩 더하며 비교한다.
+			나중에 나온 index 값에 요소를 삽입한다.
+
+		*/
+
+		this.get = function(key){
+			var position = loseloseHashTable(key);
+			if(table[position] !== undefined){
+				if(table[position].key === key){
+					return table[position].value;
+				} else {
+					var index = ++position;
+					while(table[index] === undefined || table[index].key != key){
+						index++;
+					}
+					if(table[index].key === key){
+						return table[key].value;
+					}
+				}
+			}
+
+			return undefined; // 해당 되는 요소가 없으면
+		}
+
+		this.remove = function(key){
+			var position = loseloseHashTable(key);
+
+			if(table[position] !== undefined){
+				if(table[position].key === key){
+					return table[position] = undefined;
+				} else {
+					var index = ++position;
+					while(table[index] === undefined || table[index].key != key){
+						index++;
+					}
+					if(table[index].key === key){
+						return table[position] = undefined;
+					}
+				}
+			}
+			return undefined;
+		}
+
+		/*
+			해시 함수 개선
+			지금까지 우리가 사용한 loseloseHashTable() 은 좋은 해쉬 함수가 아니다.
+			이 함수는 너무 잦은 충돌을 야기한다.
+
+		*/
+
+
+		var djb2HashCode = function(key){
+			var hash = 5381;
+
+			for(var i = 0;i < key.length; i++){
+				hash = hash * 33 + key.charCodeAt(i);
+			}
+
+			return hash % 1013;
+		}
+	</script>
+</body>
+</html>
